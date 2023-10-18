@@ -24,4 +24,114 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+    width:100%;
+}
+
+.items{
+ width: 100%;
+ height: 45px;
+ background-color: steelblue;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+.itemContainer{
+  margin:30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 40px;
+  row-gap: 20px;
+}
+.title{
+  margin: 30px ;
+}
+.arrow {
+  border: solid rgb(255, 252, 252);
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.l1{
+  margin-top: 15px;
+}
+.button {
+  padding: 5px 5px;
+  
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  
+  border: none;
+  width: 200px;
+  border-radius:5px ;
+}
+
+.button:hover {background-color: #435fb0}
+
+.button:active {
+  background-color: #5177e1;
+  transform: translateY(4px);
+}
+
+
+/* css */
+@property --p{
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}
+
+.pie {
+  --p:20;
+  --b:22px;
+  --c:darkred;
+  --w:150px;
+
+  width: var(--w);
+  aspect-ratio: 1;
+  position: relative;
+  display: inline-grid;
+  margin: 5px;
+  place-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+.pie:before,
+.pie:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+.pie:before {
+  inset: 0;
+  background:
+    radial-gradient(farthest-side,var(--c) 98%,#0000) top/var(--b) var(--b) no-repeat,
+    conic-gradient(var(--c) calc(var(--p)*1%),#0000 0);
+  -webkit-mask: radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
+          mask: radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
+}
+.pie:after {
+  inset: calc(50% - var(--b)/2);
+  background: var(--c);
+  transform: rotate(calc(var(--p)*3.6deg)) translateY(calc(50% - var(--w)/2));
+}
+.animate {
+  animation: p 1s .5s both;
+}
+.no-round:before {
+  background-size: 0 0, auto;
+}
+.no-round:after {
+  content: none;
+}
+@keyframes p{
+  from{--p:0}
 }
